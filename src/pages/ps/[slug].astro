@@ -1,0 +1,32 @@
+---
+import { readFile } from 'fs/promises';
+import { useParams } from 'astro:runtime/server';
+
+const { slug } = useParams();
+
+let data;
+try {
+  const filePath = new URL(`../../../data/pages/${slug}.json`, import.meta.url);
+  const file = await readFile(filePath, 'utf-8');
+  data = JSON.parse(file);
+} catch (err) {
+  throw new Error(`Erro: não foi possível carregar os dados para ${slug}.`);
+}
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{data.title}</title>
+  </head>
+  <body>
+    <h1>{data.title}</h1>
+    <h2>{data.subtitle}</h2>
+    <img src={data.image} alt="Imagem" width="400" />
+    <p>{data.paragraph1}</p>
+    <p>{data.paragraph2}</p>
+    <button>{data.ctaText}</button>
+    <blockquote>“{data.testimonial}”</blockquote>
+    <p>- {data.name}</p>
+  </body>
+</html>

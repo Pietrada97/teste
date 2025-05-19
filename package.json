@@ -9,7 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@faker-js/faker": "github:faker-js/faker",
+  "@faker-js/faker": "^8.0.2",
     "@tinacms/cli": "^1.9.7",
     "astro": "^5.7.13",
     "tinacms": "^2.7.7"
