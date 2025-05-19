@@ -1,0 +1,17 @@
+{
+  "name": "funnel-generator",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@faker-js/faker": "github:faker-js/faker",
+    "@tinacms/cli": "^1.9.7",
+    "astro": "^5.7.13",
+    "tinacms": "^2.7.7"
+  }
+}

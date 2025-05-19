@@ -1,0 +1,21 @@
+---
+const { title, subtitle, image, pageNumber } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title} - Página {pageNumber}</title>
+    <link rel="stylesheet" href="/styles/template.css" />
+  </head>
+  <body>
+    <main>
+      <h1>{title}</h1>
+      <h2>{subtitle}</h2>
+      {image && <img src={image} alt={title} />}
+      <div><slot /></div>
+      <p>Página {pageNumber} de 1000</p>
+    </main>
+  </body>
+</html>

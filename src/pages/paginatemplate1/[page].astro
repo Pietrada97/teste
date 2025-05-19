@@ -1,0 +1,27 @@
+---
+import TemplateLayout from '../../layouts/TemplateLayout.astro';
+import { client } from '../../tina/__generated__/client';
+
+export async function getStaticPaths() {
+  const result = await client.queries.templatePagesConnection();
+  return result.data.templatePagesConnection.edges.map((page, index) => ({
+    params: { page: `${index + 1}` },
+    props: {
+      pageNumber: index + 1,
+      slug: `template-page-${index + 1}`
+    }
+  }));
+}
+
+const { slug, pageNumber } = Astro.props;
+
+const pageData = await client.queries.templatePages({
+  relativePath: `${slug}.mdx`
+});
+
+const { title, subtitle, image, body } = pageData.data.templatePages;
+---
+
+<TemplateLayout title={title} subtitle={subtitle} image={image} pageNumber={pageNumber}>
+  <div set:html={body} />
+</TemplateLayout>
